@@ -44,7 +44,24 @@ public class CustomerRepository {
 
         final ScanEnhancedRequest request = ScanEnhancedRequest.builder()
                 .consistentRead(true)
-                .attributesToProject("id", "name", "last-name", "email")
+                .attributesToProject("id", "firstName", "lastName", "email")
+                .filterExpression(expression)
+                .build();
+
+        return getTable().scan(request).items().stream().toList();
+    }
+
+    public List<Customer> filterByFirstName(final String firstName) {
+        final Map<String, AttributeValue> params = Map.of(":firstName", stringValue(firstName));
+
+        final Expression expression = Expression.builder()
+                .expression("firstName = :firstName")
+                .expressionValues(params)
+                .build();
+
+        final ScanEnhancedRequest request = ScanEnhancedRequest.builder()
+                .consistentRead(true)
+                .attributesToProject("id", "firstName", "lastName", "email")
                 .filterExpression(expression)
                 .build();
 

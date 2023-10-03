@@ -67,6 +67,7 @@ dependencies {
 	implementation("net.devh:grpc-server-spring-boot-starter:$springBootGrpc")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.testcontainers:dynalite:1.19.1")
 
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")

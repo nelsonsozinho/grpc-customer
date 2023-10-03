@@ -40,8 +40,8 @@ public class CustomerController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<CustomerRest>> filterByEmail(@RequestParam("email") String email) {
-        return ResponseEntity.ok(customerService.filterCustomersByEmail(email));
+    public ResponseEntity<List<CustomerRest>> filterByFirstName(@RequestParam("firstName") String firstName) {
+        return ResponseEntity.ok(customerService.filterCustomersByFirstName(firstName));
     }
 
 }

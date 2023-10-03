@@ -25,7 +25,7 @@ public class CustomerService {
         }
 
         final Customer customer = new Customer();
-        customer.setName(customerRest.getName());
+        customer.setFirstName(customerRest.getName());
         customer.setLastName(customerRest.getLastName());
         customer.setEmail(customerRest.getEmail());
         customer.setId(UUID.randomUUID().toString());
@@ -44,7 +44,7 @@ public class CustomerService {
         }
 
         return CustomerRest.builder()
-                .name(customer.getName())
+                .name(customer.getFirstName())
                 .email(customer.getEmail())
                 .lastName(customer.getLastName())
                 .id(UUID.fromString(customer.getId()))
@@ -54,7 +54,18 @@ public class CustomerService {
     public List<CustomerRest> filterCustomersByEmail(final String email) {
         return customerRepository.filterByEmail(email).stream().map(c -> {
             return CustomerRest.builder()
-                    .name(c.getName())
+                    .name(c.getFirstName())
+                    .id(UUID.fromString(c.getId()))
+                    .lastName(c.getLastName())
+                    .email(c.getEmail())
+                    .build();
+        }).toList();
+    }
+
+    public List<CustomerRest> filterCustomersByFirstName(final String name) {
+        return customerRepository.filterByFirstName(name).stream().map(c -> {
+            return CustomerRest.builder()
+                    .name(c.getFirstName())
                     .id(UUID.fromString(c.getId()))
                     .lastName(c.getLastName())
                     .email(c.getEmail())

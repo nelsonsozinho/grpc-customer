@@ -9,7 +9,7 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortK
 public class Customer {
 
     private String id;
-    private String name;
+    private String firstName;
     private String lastName;
     private String email;
 
@@ -26,16 +26,16 @@ public class Customer {
     }
 
     @DynamoDbSortKey
-    @DynamoDbAttribute("name")
-    public String getName() {
-        return name;
+    @DynamoDbAttribute("firstName")
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    @DynamoDbAttribute("last-name")
+    @DynamoDbAttribute("lastName")
     public String getLastName() {
         return lastName;
     }
